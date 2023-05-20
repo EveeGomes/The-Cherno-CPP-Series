@@ -15,10 +15,8 @@ public:
       m_Buffer[m_Size] = 0;
    }
 
-   // without deleting the allocated memory we will have memory leak!
    ~String()
    {
-      // so we call delete buffer to safelly deal with the memory we've allocated!
       delete[] m_Buffer;
    }
 
@@ -34,6 +32,10 @@ std::ostream& operator<<(std::ostream& stream, const String& string)
 int main()
 {
    String string = "Cherno";
+   String second = string; // try to copy but this won't work because it'll perform a shallow copy and when the code comes to the end and destructor is called, it'll try to delete the same allocated memory (pointer by m_Buffer) twice!
+
    std::cout << string << std::endl;
-   std::cin.get();
+   std::cout << second << std::endl;
+
+   //std::cin.get();
 }
