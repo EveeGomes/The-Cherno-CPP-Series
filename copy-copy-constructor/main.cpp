@@ -10,11 +10,16 @@ public:
    String(const char* string)
    {
       m_Size = strlen(string);
-      m_Buffer = new char[m_Size + 1]; // add 1 to allocate space for the null terminator character
-  
-      memcpy(m_Buffer, string, m_Size); // we could use strcpy which already includes the null terminator character!
-      // and now add the null character (manually):
+      m_Buffer = new char[m_Size + 1];
+      memcpy(m_Buffer, string, m_Size);
       m_Buffer[m_Size] = 0;
+   }
+
+   // without deleting the allocated memory we will have memory leak!
+   ~String()
+   {
+      // so we call delete buffer to safelly deal with the memory we've allocated!
+      delete[] m_Buffer;
    }
 
    friend std::ostream& operator<<(std::ostream& stream, const String& string);
