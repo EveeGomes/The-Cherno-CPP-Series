@@ -39,8 +39,12 @@ public:
    friend std::ostream& operator<<(std::ostream& stream, const String& string);
 };
 
-void PrintStringByValue(String string)
+// so instead of passing objs by value, we should always pass a const reference! (exceptions might apply for different programs/codes but this is in general cases/best practice)
+// const in order to avoid any kind of modification in the object (in this case, since we only need to print!)
+void PrintStringByReference(const String& string)
 {
+   // if we didn't use const keyword, we could do the following:
+   //string[2] = 'b';
    std::cout << string << std::endl;
 }
 
@@ -57,9 +61,8 @@ int main()
 
    second[2] = 'a';
 
-   // use PrintStringByValue instead and we see copies are done because we're passing by value, which is NOT what we want! We want as less copies as possible in our program!
-   PrintStringByValue(string);   //Copy constructor, then Cherno and Destructor for the copy made in PrintStringByValue()
-   PrintStringByValue(second);   //Copy constructor, then Charno and Destructor for the copy made in PrintStringByValue()
+   PrintStringByReference(string);  //Cherno
+   PrintStringByReference(second);  //Charno
 
    /*std::cout << string << std::endl;
    std::cout << second << std::endl;*/
