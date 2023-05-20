@@ -14,13 +14,16 @@ public:
       
       memcpy(m_Buffer, string, m_Size);
    }
+
+   // make it a friend of the class so it can access the class private members
+   friend std::ostream& operator<<(std::ostream& stream, const String& string)
 };
 
 // To be able to print an object of String class, we overload the "print" operator (shift left <<)
 std::ostream& operator<<(std::ostream& stream, const String& string)
 {
    // first we call a method to put information into stream and then we return stream
-   stream << string.GetBuffer();
+   stream << string.m_Buffer;
    return stream;
 }
 
