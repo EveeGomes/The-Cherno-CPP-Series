@@ -15,11 +15,15 @@ public:
       m_Buffer[m_Size] = 0;
    }
 
-   // Copy constructor takes as arg a reference to an object of the same class
-   String(const String& other)   
+   // Copy constructor takes as arg a reference to an object of the same class (here we create another object that'll take the same content as the other one)
+   String(const String& other)
+      :m_Size(other.m_Size) //shallow copy m_Size because it's just an integer!
    {
-      // or the same:
-      memcpy(this, &other, sizeof(String));
+      // however, we need more than just a shallow copy. We need don't just need the pointer, but the memory at the pointer!
+      // so we allocate memory for this new object
+      m_Buffer = new char[m_Size + 1];
+      memcpy(m_Buffer, other.m_Buffer, m_Size + 1); // + 1 can be placed here becase we already know the reference object has a null terminator character (since it's a String and we've put that in the contructor! :) )
+
    }
 
    ~String()
