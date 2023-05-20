@@ -20,7 +20,7 @@ public:
       :m_Size(other.m_Size)
    {
       // proving it's copied:
-      std::cout << "Copied constructor!" << std::endl;
+      std::cout << "Copy constructor!" << std::endl;
       m_Buffer = new char[m_Size + 1];
       memcpy(m_Buffer, other.m_Buffer, m_Size + 1);
    }
@@ -39,6 +39,11 @@ public:
    friend std::ostream& operator<<(std::ostream& stream, const String& string);
 };
 
+void PrintStringByValue(String string)
+{
+   std::cout << string << std::endl;
+}
+
 std::ostream& operator<<(std::ostream& stream, const String& string)
 {
    stream << string.m_Buffer;
@@ -47,13 +52,17 @@ std::ostream& operator<<(std::ostream& stream, const String& string)
 
 int main()
 {
-   String string = "Cherno";
-   String second = string;
+   String string = "Cherno";  //Constructor
+   String second = string;    //Copy constructor
 
    second[2] = 'a';
 
-   std::cout << string << std::endl;
-   std::cout << second << std::endl;
+   // use PrintStringByValue instead and we see copies are done because we're passing by value, which is NOT what we want! We want as less copies as possible in our program!
+   PrintStringByValue(string);   //Copy constructor, then Cherno and Destructor for the copy made in PrintStringByValue()
+   PrintStringByValue(second);   //Copy constructor, then Charno and Destructor for the copy made in PrintStringByValue()
 
-   //std::cin.get();
-}
+   /*std::cout << string << std::endl;
+   std::cout << second << std::endl;*/
+
+   
+} //Destructor called for each and every object that are still in the program

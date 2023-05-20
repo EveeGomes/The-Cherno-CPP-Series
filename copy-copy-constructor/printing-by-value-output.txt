@@ -1,0 +1,10 @@
+Constructor
+Copy constructor!
+Copy constructor!
+Cherno
+Destructor
+Copy constructor!
+Charno
+Destructor
+Destructor
+Destructor
