@@ -1,10 +1,16 @@
 #include <iostream>
 #include <string>
 
+struct Vector2
+{
+   float x, y;
+};
+
 int main()
 {
-   int a = 2;
-   int b = a; // this is a copy. But both variables are different!
-   //They each have an address in memory. The proof is that if changing the value of b, a won't be affected:
-   b = 5;
+   Vector2 a = { 2, 3 };
+   Vector2 b = a;
+   b.x = 5;
+
+   std::cin.get(); // the program waits us to press enter to close :)
 }
