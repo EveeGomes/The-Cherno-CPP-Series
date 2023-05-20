@@ -11,24 +11,22 @@ public:
    {
       m_Size = strlen(string);
       m_Buffer = new char[m_Size];
-      
+  
       memcpy(m_Buffer, string, m_Size);
    }
 
-   // make it a friend of the class so it can access the class private members
-   friend std::ostream& operator<<(std::ostream& stream, const String& string)
+   friend std::ostream& operator<<(std::ostream& stream, const String& string);
 };
 
-// To be able to print an object of String class, we overload the "print" operator (shift left <<)
 std::ostream& operator<<(std::ostream& stream, const String& string)
 {
-   // first we call a method to put information into stream and then we return stream
    stream << string.m_Buffer;
    return stream;
 }
 
 int main()
 {
-
+   String string = "Cherno";
+   std::cout << string << std::endl; // we can use like this std::cout << string because we overloaded the left shift operator! Another way to write would be: operator<<(std::cout, string);
    std::cin.get();
 }
