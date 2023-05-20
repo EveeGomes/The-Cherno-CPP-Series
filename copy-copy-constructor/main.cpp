@@ -16,10 +16,10 @@ public:
    }
 
    // Copy constructor takes as arg a reference to an object of the same class
-   String(const String& other)
-      :m_Buffer(other.m_Buffer), m_Size(other.m_Size) // this is what C++ already provides in case we don't define a copy constructor. This is just a shallow copy!
+   String(const String& other)   
    {
-
+      // or the same:
+      memcpy(this, &other, sizeof(String));
    }
 
    ~String()
