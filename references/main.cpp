@@ -2,23 +2,19 @@
 
 #define LOG(x) std::cout << x << std::endl;
 
-// So instead of changing the copy (and end up with the real variable unchanged), we need to access what's stored in the specific address and made a change there! 
-// ie. we need the address to be passed as arg of the function to perfom the real change.
-// so we gotta work with a pointer (since it holds addresses):
-void increment(int* value) // the parameter is a pointer; when calling this function the argument passed will be an address of the variable we want
+// now, we can achieve the exactly SAME behavior using reference instead of pointer!
+// the code syntax will look cleaner so that's why references are mostly used
+// a reference works as an alias, and is also similar to how pointers work: they go to the address of the variable we want to perform some change/to access
+void increment(int& value) // now the parameter is a reference of the variable being passed to the function!
 {
-   // we'll need to dereference the pointer; this is done by the * operator before the pointer identifier: *ptr
-   // to dereference means we'll get the value from the address pointed by the pointer
-   // if we do: *value++; due to the order of operations the increment will happen first, meaning we would be incrementing the POINTER
-   // so to avoid that and actually increment the value, we'll use () to first dereference the pointer and then with the value return by that dereference we perfom the increment operation!
-   (*value)++;
+   value++; // and here we can go back to a cleaner syntax since we already have the "real" variable in the function
 }
 
 int main()
 {
    int a = 5;
-   // and here, we'll gotta pass the address of a variable to increment():
-   increment(&a);
+   // also, when calling the function that has reference as parameter, we can pass the arg just as the variable identifier
+   increment(a);
    LOG(a);
 
 }
