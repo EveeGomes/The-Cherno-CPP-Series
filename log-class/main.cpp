@@ -16,9 +16,6 @@ public:
       m_LogLevel = level;
    }
 
-   // add in each of these methods an if statement to validate whether the message should be printed!
-   // We gotta check if m_LogLevel is set to the appropriate log level of that particular method.
-
    void Error(const char* message)
    {
       if(m_LogLevel >= LogLevelError) 
@@ -41,10 +38,10 @@ public:
 int main()
 {
    Log log;
-   log.SetLevel(log.LogLevelWarning);
+   //log.SetLevel(log.LogLevelWarning);
+   log.SetLevel(log.LogLevelInfo);
    log.Warn("Hello!");
    log.Error("Hello!");
    log.Info("Hello!");
 
-   std::cin.get();
 }
