@@ -2,9 +2,14 @@
 
 class Log
 {
+public:
+   // these variables help us on not having to memorize what each 0, 1, 2 mean!
+   const int LogLevelError = 0;
+   const int LogLevelWarning = 1;
+   const int LogLevelInfo = 2;
+
 private:
-   // this member variable will maintain what level the log is set
-   int m_LogLevel;
+   int m_LogLevel = LogLevelInfo; // by default everything should get printed
 
 public:
    void SetLevel(int level)
@@ -14,7 +19,7 @@ public:
 
    void Warn(const char* message)
    {
-
+      
    }
 };
 
